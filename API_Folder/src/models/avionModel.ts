@@ -50,15 +50,13 @@ export const avionModel = {
 					query += `${item} = "${params[item]}"`;
 				}
 				if (item === "heuresDeVolMin") {
-					query += `heuresDeVol >= ${params[item]}`;
+					query += `heures_de_vol >= ${params[item]}`;
 				}
 				if (item === "heuresDeVolMax") {
-					query += `heuresDeVol <= ${params[item]}`;
+					query += `heures_de_vol <= ${params[item]}`;
 				}
-				if (item === "nonVoleDepuis") {
-					query += `immatriculation not in (
-						select immatriculationAvion from vol where dateVol
-						>= "${params[item]}")`;
+				if (item === "derniereMaintenance") {
+					query += `derniere_maintenance = "${params[item]}"`;
 				}
 				if (index != Object.keys(params).length - 1) {
 					query += " and ";
@@ -78,9 +76,9 @@ export const avionModel = {
 		try {
 			connection = await pool.getConnection();
 			const rows = await pool.query(
-				`insert into Avion(immatriculation, marque, modele, heuresDeVol)
+				`insert into Avion(immatriculation, marque, modele, derniere_maintenance, heures_de_vol)
 						values("${Avion.immatriculation}", "${Avion.marque}",
-						"${Avion.modele}", ${Avion.heuresDeVol});`
+						"${Avion.modele}", "${Avion.derniereMaintenance}", "${Avion.heuresDeVol}");`
 			);
 			return rows;
 		} catch (error) {
@@ -95,7 +93,7 @@ export const avionModel = {
 		try {
 			connection = await pool.getConnection();
 			const rows = await pool.query(
-				`delete from Avion where immatriculation = "${immatriculation}"`
+				`delete from Avion where Immatriculation = "${immatriculation}"`
 			);
 			return rows;
 		} catch (error) {
@@ -105,13 +103,19 @@ export const avionModel = {
 		}
 	},
 	
-	update: async (params: Record<string, string | number | undefined>) => {
+	update: async (immatriculation: string, params: Record<string, string | number | undefined>) => {
 		let connection;
 		try {
-			if (params["immatriculation"] && Object.keys(params).length > 1) {
+			if (immatriculation && Object.keys(params).length > 0) {
 				let query = "update Avion set ";
 				
 				Object.keys(params).forEach((item, index) => {
+					if (item === "immatriculation") {
+						query += `${item} = "${params[item]}"`;
+						if (index != Object.keys(params).length - 1) {
+							query += ", ";
+						}
+					}
 					if (item === "marque") {
 						query += `${item} = "${params[item]}"`;
 						if (index != Object.keys(params).length - 1) {
@@ -124,14 +128,20 @@ export const avionModel = {
 							query += ", ";
 						}
 					}
-					if (item === "heuresDeVol") {
+					if (item === "derniere_maintenance") {
+						query += `${item} = "${params[item]}"`;
+						if (index != Object.keys(params).length - 1) {
+							query += ", ";
+						}
+					}
+					if (item === "heures_de_vol") {
 						query += `${item} = ${params[item]}`;
 						if (index != Object.keys(params).length - 1) {
 							query += ", ";
 						}
 					}
 				});
-				query += ` where immatriculation = "${params["immatriculation"]}"`;
+				query += ` where immatriculation = "${immatriculation}"`;
 				connection = await pool.getConnection();
 				const rows = await pool.query(query);
 				

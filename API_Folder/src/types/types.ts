@@ -2,6 +2,7 @@ export interface Avion {
 	immatriculation: string;
 	marque: string;
 	modele: string;
+	derniereMaintenance: Date;
 	heuresDeVol?: number;
 }
 
