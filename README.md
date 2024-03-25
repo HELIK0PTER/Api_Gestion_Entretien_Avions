@@ -49,6 +49,12 @@ externe.
 | PUT /entretiens/:id | ENTRETIEN NON MODIFIE | L'ID pourrait ne pas exister. L'entretien n'a pas été mis à jour. |
 | DELETE /entretiens/:id | ENTRETIEN NON SUPPRIME | L'entretien avec l'ID spécifié n'a pas été supprimé. |
 
+
+## Creation de la base de données
+
+Voir dans le fichier : [creation-bdd.sql](creation-bdd.sql)
+
+
 ## Schéma du chemin de la requête
 
 ![Schema.png](Schema.png)
