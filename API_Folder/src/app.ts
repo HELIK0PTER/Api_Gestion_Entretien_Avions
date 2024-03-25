@@ -3,6 +3,8 @@ import express from "express";
 import cors from "cors";
 
 import avionController from "./pages/interfaces/avionController";
+import mecanicienController from "./pages/interfaces/mecanicienController";
+import entretienController from "./pages/interfaces/entretienController";
 
 import * as middlewares from "./middlewares";
 
@@ -23,6 +25,8 @@ app.use(express.json());
 
 // Middleware to define the route to avion controller.
 app.use("/avions", avionController);
+app.use("/mecaniciens", mecanicienController);
+app.use("/entretiens", entretienController);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);

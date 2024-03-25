@@ -46,9 +46,7 @@ export const handlePostAvion = async (request: Request, next: NextFunction) => {
 				"Erreur"
 			);
 		} else {
-			const avionAjoute = await avionModel.getByImmatriculation(
-				avion.immatriculation
-			);
+			const avionAjoute = await avionModel.getByImmatriculation(avion.immatriculation);
 			return avionAjoute;
 		}
 	} catch (e) {

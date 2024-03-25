@@ -6,20 +6,16 @@ export interface Avion {
 	heuresDeVol?: number;
 }
 
-export interface Pilote {
-	idPilote: number;
+export interface Mecanicien {
+	id?: number;
 	nom: string;
 	prenom: string;
-	licence: string;
-	heuresDeVol: number;
 }
 
-export interface Vol {
-	idVol: number;
-	immatriculationAvion: string;
-	idPilote: number;
-	dateDepart: Date;
-	dateArrivee: Date;
-	destination: string;
-	origine: string;
+export interface Entretien {
+	id?: number;
+	date: Date;
+	description: string;
+	immatriculation: string;
+	id_mecanicien: number;
 }

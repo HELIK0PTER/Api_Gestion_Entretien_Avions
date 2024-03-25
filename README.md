@@ -9,23 +9,28 @@ externe.
 
 ## Endpoints
 
-| Méthode HTTP | Endpoint | Description |
-| --- | --- | --- |
-| GET | /avions | Récupère la liste de tous les avions. |
-| GET | /avions/{id} | Récupère les détails d'un avion spécifique. |
-| POST | /avions | Crée un nouvel avion. |
-| PUT | /avions/{id} | Met à jour les détails d'un avion existant. |
-| DELETE | /avions/{id} | Supprime un avion spécifique. |
-| GET | /entretiens | Récupère la liste de tous les entretiens. |
-| GET | /entretiens/{id} | Récupère les détails d'un entretien spécifique. |
-| POST | /entretiens | Crée un nouvel entretien. |
-| PUT | /entretiens/{id} | Met à jour les détails d'un entretien existant. |
-| DELETE | /entretiens/{id} | Supprime un entretien spécifique. |
-| GET | /mecaniciens | Récupère la liste de tous les mécaniciens. |
-| GET | /mecaniciens/{id} | Récupère les détails d'un mécanicien spécifique. |
-| POST | /mecaniciens | Crée un nouveau mécanicien. |
-| PUT | /mecaniciens/{id} | Met à jour les détails d'un mécanicien existant. |
-| DELETE | /mecaniciens/{id} | Supprime un mécanicien spécifique. |
+| Méthode HTTP | Endpoint                       | Description                                           |
+|--------------|--------------------------------|-------------------------------------------------------|
+| GET          | /avions                        | Récupère la liste de tous les avions.                 |
+| GET          | /avions/{id}                   | Récupère les détails d'un avion spécifique.           |
+| GET          | /avions/rechercher?params      | Récupère les avions avec une recherche par détail     |
+| POST         | /avions                        | Crée un nouvel avion.                                 |
+| PUT          | /avions/{id}                   | Met à jour les détails d'un avion existant.           |
+| DELETE       | /avions/{id}                   | Supprime un avion spécifique.                         |
+| GET          | /entretiens                    | Récupère la liste de tous les entretiens.             |
+| GET          | /entretiens/{id}               | Récupère les détails d'un entretien spécifique.       |
+| GET          | /entretiens/rechercher?params  | Récupère les entretiens avec une recherche par détail |
+| POST         | /entretiens                    | Crée un nouvel entretien.                             |
+| PUT          | /entretiens/{id}               | Met à jour les détails d'un entretien existant.       |
+| DELETE       | /entretiens/{id}               | Supprime un entretien spécifique.                     |
+| GET          | /mecaniciens                   | Récupère la liste de tous les mécaniciens.            |
+| GET          | /mecaniciens/{id}              | Récupère les détails d'un mécanicien spécifique.      |
+| GET          | /mecaniciens/rechercher?params | Récupère les mecaniciens avec une recherche par détail |
+| POST         | /mecaniciens                   | Crée un nouveau mécanicien.                           |
+| PUT          | /mecaniciens/{id}              | Met à jour les détails d'un mécanicien existant.      |
+| DELETE       | /mecaniciens/{id}              | Supprime un mécanicien spécifique.                    |
+
+Attention pour les méthdes POST et PUT, il faut envoyer les données en JSON et faire attention a la case (sinon erreur toString).
 
 ## Erreurs possibles
 
